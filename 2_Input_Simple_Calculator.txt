@@ -1,0 +1,99 @@
+/* A simple two-input calculator
+ * By Abir Dutta
+ */
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class Simple_Calculator extends JFrame implements ActionListener
+{
+    JFrame f;
+    JLabel l1,l2,l;
+    JTextField t1,t2;
+    JButton b1,b2,b3,b4,b5;
+    double a,b,result;
+    Simple_Calculator()
+    {
+        f=new JFrame("Calculator");
+        f.setSize(300,300);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setLayout(null);
+        f.setLocationRelativeTo(null);
+        l1=new JLabel("Number 1");
+        l2=new JLabel("Number 2");
+        l=new JLabel("Result: ");
+        t1=new JTextField();
+        t2=new JTextField();
+        b1=new JButton("+");
+        b2=new JButton("-");
+        b3=new JButton("*");
+        b4=new JButton("/");
+        b5=new JButton("=");
+        l1.setBounds(40,20,100,30);
+        l2.setBounds(190,20,100,30);
+        t1.setBounds(18,50,100,30);
+        t2.setBounds(168,50,100,30);
+        b1.setBounds(20,100,70,40);
+        b2.setBounds(200,100,70,40);
+        b3.setBounds(20,150,70,40);
+        b4.setBounds(200,150,70,40);
+        b5.setBounds(110,120,70,40);
+        l.setBounds(50,200,300,30);
+        f.add(b1);
+        f.add(b2);
+        f.add(b3);
+        f.add(b4);
+        f.add(b5);
+        f.add(t1);
+        f.add(t2);
+        f.add(l);
+        f.add(l1);
+        f.add(l2);
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+        b3.addActionListener(this);
+        b4.addActionListener(this);
+        b5.addActionListener(this);
+        f.setResizable(false);
+        f.setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e)
+    {
+        
+        try
+        {
+            a=Double.parseDouble(t1.getText());
+            b=Double.parseDouble(t2.getText());
+        
+            if(e.getSource()==b1)
+            {
+                result=a+b;
+            }
+            if(e.getSource()==b2)
+            {
+                result=a-b;
+            }
+            if(e.getSource()==b3)
+            {
+                result=a*b;
+            }
+            if(e.getSource()==b4)
+            {
+                result=a/b;
+            }
+            if(e.getSource()==b5)
+            {
+                String s=Double.toString(result);
+                l.setText("Result: "+s);
+            }
+        }catch(NumberFormatException e1){
+            l.setText("Please enter number");
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        new Simple_Calculator();
+    }
+}
